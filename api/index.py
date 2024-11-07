@@ -9,16 +9,10 @@ def home():
     return "Welcome to my Python script!"
 
 # Define a route for executing your Python script's functionality
-@app.route('/run-script', methods=['POST'])
+@app.route('/run-script', methods=['GET'])
 def run_script():
-    # Example function that represents your Python script
-    def my_script():
-        # Add the main code of your Python script here
-        result = "Hello from my script!"  # Replace this with your actual script's output
-        return result
-
     # Run your script and return the result
-    result = my_script()
+    result = "hello from my script!"
     return jsonify({"result": result})
 
 # Run the app if this file is run directly
