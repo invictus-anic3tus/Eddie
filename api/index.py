@@ -4,8 +4,10 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+
+@app.route('/run-script', methods=['GET'])
 # Create a button to submit the input
-def submit():
+def run_script():
     client = Client()
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
