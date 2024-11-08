@@ -2,22 +2,7 @@ from g4f.client import Client
 
 from flask import Flask, render_template, request, jsonify
 
-import tkinter as tk
-
 app = Flask(__name__)
-
-# # Create main window
-# window = tk.Tk()
-# window.title("Text Input Example")
-
-# # Create a label
-# label = tk.Label(window, text="Enter your name:")
-# label.pack()
-
-# # Create a text entry box
-# entry = tk.Entry(window)
-# entry.pack()
-
 
 message = ""
 
@@ -34,13 +19,3 @@ def submit():
     global message
     message = response.choices[0].message.content
     print(message)
-    
-
-# print(message + "Gooba gooba gooba")
-
-# button = tk.Button(window, text="Submit", command=submit)
-# button.pack()
-
-# Start the GUI
-# window.mainloop()
-

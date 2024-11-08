@@ -1,20 +1,22 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 
-# Initialize the Flask app
+from g4f.client import Client
+
 app = Flask(__name__)
 
-# Define a route (URL endpoint) for your Python function
-@app.route('/')
-def home():
-    return "Welcome to my Python script!"
-
-# Define a route for executing your Python script's functionality
 @app.route('/run-script', methods=['GET'])
 def run_script():
-    # Run your script and return the result
-    result = "hello from my script!"
-    return jsonify({"result": result})
+    text = entry.get()
+    client = Client()
+    global response
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": text}],
+        # Add any other necessary parameters
+    )
+    
+    result = response.choices[0].message.content
+    return jsonify({"message": result})
 
-# Run the app if this file is run directly
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
