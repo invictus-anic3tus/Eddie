@@ -16,15 +16,20 @@
 #     )
 #     return jsonify({"message": response})
 
-
-
-
-from flask import Flask, jsonify
+from flask import Flask, send_from_directory
 
 app = Flask(__name__)
 
-@app.route('/run-script', methods=['GET'])
-def run_script():
-    # Replace this with the script you want to run
-    result = "Script has run successfully!"
-    return jsonify({"message": result})  # Ensures JSON response
+# Route to serve the HTML file
+@app.route('/')
+def serve_html():
+    return send_from_directory('', 'index.html')
+
+# Route to handle the button click and send the message
+@app.route('/message')
+def get_message():
+    return "Hello from the Vercel app!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
+
