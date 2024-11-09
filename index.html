@@ -11,15 +11,24 @@
   </style>
 </head>
 <body>
-  <h1>Welcome to My Vercel App</h1>
-  <button onclick="displayMessage()">Click Me</button>
+  <h1>Customizable AI Chatbots</h1>
+  <h3>Enter Your Message or Question</h3>
+  <input type="text" id="userInput" placeholder="Type anything..." />
+  <button onclick="submitMessage()">Submit</button>
   <p id="message"></p>
 
   <script>
-    async function displayMessage() {
-      const response = await fetch('/message');
+    async function submitMessage() {
+      const userInput = document.getElementById('userInput').value;
+      const response = await fetch('/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userInput }),
+      });
       const data = await response.text();
-      document.getElementById('message').innerText = data;
+      document.getElementById('responseMessage').innerText = data;
     }
   </script>
 </body>

@@ -26,9 +26,13 @@ def serve_html():
     return send_from_directory('', 'index.html')
 
 # Route to handle the button click and send the message
-@app.route('/message')
-def get_message():
-    return "Hello from the Vercel app!"
+# Route to handle the form submission
+@app.route('/submit', methods=['POST'])
+def handle_submit():
+    data = request.get_json()
+    user_message = data.get('message', '')
+    response_message = f"You submitted: {user_message}"
+    return response_message
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
