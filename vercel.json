@@ -12,7 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/submit",
+      "src": "^/submit$",
+      "methods": ["POST"],
       "dest": "app.py"
     },
     {
