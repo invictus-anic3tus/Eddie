@@ -17,8 +17,10 @@
 #     return jsonify({"message": response})
 
 from flask import Flask, request, send_from_directory
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Route to serve the HTML file
 @app.route('/')
