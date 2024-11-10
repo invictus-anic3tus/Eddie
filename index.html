@@ -3,19 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vercel App</title>
-  <style>
-    body { text-align: center; margin-top: 50px; font-family: Arial, sans-serif; }
-    button { padding: 10px 20px; font-size: 16px; }
-    #message { margin-top: 20px; font-size: 18px; }
-  </style>
+  <title>Vercel App with Input</title>
 </head>
 <body>
   <h1>Customizable AI Chatbots</h1>
-  <h3>Enter Your Message or Question</h3>
   <input type="text" id="userInput" placeholder="Type anything..." />
   <button onclick="submitMessage()">Submit</button>
-  <p id="message"></p>
+  <p id="responseMessage"></p>
 
   <script>
     async function submitMessage() {
