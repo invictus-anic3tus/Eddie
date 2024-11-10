@@ -16,7 +16,7 @@ def ai(message):
         messages=[{"role": "user", "content": message}],
         # Add any other necessary parameters
     )
-    return jsonify({"message": response})
+    return response
 
 
 @app.route('/submit', methods=['POST'])
