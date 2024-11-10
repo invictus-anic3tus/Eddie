@@ -7,9 +7,42 @@
   <title>Vercel App with Input</title>
 </head>
 
+<style>
+  select {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: Arial, sans-serif;
+  }
+  
+  label {
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 10px;
+  }
+
+  button {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 20px;
+  }
+</style>
+
 <body>
   <h1>Customizable AI Chatbots</h1>
   <input type="text" id="userInput" placeholder="Type anything..." />
+
+  <label for="model">Choose your Chatbot model:</label>
+  <option value="eddie">Eddie</option>
+  <option value="eddie2">Eddie Mk. 2</option>
+  <option value="marvin">Marvin</option>
+  <option value="custom">Custom</option>
+
   <button onclick="submitMessage()">Submit</button>
   <p id="responseMessage"></p>
 
