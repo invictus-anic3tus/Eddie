@@ -16,7 +16,7 @@ def ai(message):
         messages=[{"role": "user", "content": message}],
         # Add any other necessary parameters
     )
-    return response
+    return response.choices[0].message.content
 
 
 @app.route('/submit', methods=['POST'])
