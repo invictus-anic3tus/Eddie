@@ -23,7 +23,8 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
-def serve_html():
+@app.route('/<path:path>')
+def serve_html(path=''):
     return send_from_directory('', 'index.html')
 
 @app.route('/submit', methods=['POST'])
@@ -32,6 +33,5 @@ def handle_submit():
     user_message = data.get('message', '')
     response_message = f"You submitted: {user_message}"
     return response_message
-
 
 
