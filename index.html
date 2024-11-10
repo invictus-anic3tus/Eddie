@@ -18,11 +18,16 @@
   font-family: Arial, sans-serif;
   }
   
-  label {
+  select {
   font-size: 16px;
   font-weight: bold;
   display: inline-block;
   margin-right: 10px;
+  }
+
+  option {
+  font-size: 16px;
+  font-weight: normal;
   }
 
   button {
@@ -37,11 +42,12 @@
   <h1>Customizable AI Chatbots</h1>
   <input type="text" id="userInput" placeholder="Type anything..." />
 
-  <label for="model">Choose your Chatbot model:</label>
-  <option value="eddie">Eddie</option>
-  <option value="eddie2">Eddie Mk. 2</option>
-  <option value="marvin">Marvin</option>
-  <option value="custom">Custom</option>
+  <select name="model", id="model">
+    <option value="eddie">Eddie</option>
+    <option value="eddie2">Eddie Mk. 2</option>
+    <option value="marvin">Marvin</option>
+    <option value="custom">Custom</option>
+  </select>
 
   <button onclick="submitMessage()">Submit</button>
   <p id="responseMessage"></p>
