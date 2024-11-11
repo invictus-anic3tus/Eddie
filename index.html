@@ -8,54 +8,154 @@
 </head>
 
 <style>
+  :root {
+
+    --change-color: rgb(153, 0, 255);
+  }
+
+  body {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
   select {
-  font-size: 16px;
-  font-weight: bold;
-  display: inline-block;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline;
+    padding: 8px;
+    border: 2px solid;
+    border-radius: 10px;
+    appearance: menu;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+
+    top: 230px;
+    left: 110px;
   }
 
   option {
-  font-size: 16px;
-  font-weight: normal;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+
+
+  textarea {
+    position: absolute;
+    height: 100px;
+    width: 400px;
+    border-radius: 10px 10px 10px 10px;
+    resize: none;
+    padding: 10px;
+    padding-top: 15px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid;
+  }
+
+  textarea:focus {
+    border-color: black;
+    outline-color: var(--change-color);
+    transition: linear 0.25s;
+  }
+
+  select:focus {
+    border-color: black;
+    outline-color: var(--change-color);
+    transition: linear 0.25s;
+  }
+
+  .placeholder {
+    position: absolute;
+    top: 85px;
+    left: 40px;
+    background-color: white;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  h1 {
+    padding: 10px;
   }
 
   button {
-  font-size: 20px;
-  font-weight: bold;
-  display: inline-block;
-  margin-right: 20px;
-  border-radius: 12px;
+    position: relative;
+    top: 71px;
+    left: 230px;
+    height: 37px;
+    width: 107px;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-right: 20px;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    padding: 0px;
+    overflow: hidden;
   }
 
-  input {
-  height: 80px;
-  width: 160px;
-  border-radius: 10%;
+
+  button:after {
+    content: "";
+    background-color: rgb(89, 0, 255);
+    padding-top: 25%;
+    padding-bottom: 25%;
+    padding-left: 180%;
+    padding-right: 180%;
+    margin-left: -70px !important;
+    margin-right: -70px !important;
+    opacity: 0;
+    transition: all 1s
+  }
+
+  button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
+  .buttontext {
+    position: relative;
+    font-weight: bold;
+    left: 255px;
+    top: 45px;
+    pointer-events: none;
   }
 </style>
 
 <body>
   <h1>Customizable AI Chatbots</h1>
-  <input type="text" id="userInput" placeholder="Type anything..." />
+  <textarea id="userInput"></textarea>
 
-  <select name="model", id="model">
+
+  <select name="model" , id="model">
     <option value="eddie">Eddie</option>
     <option value="eddie2">Eddie Mk. 2</option>
     <option value="marvin">Marvin</option>
     <option value="custom">Custom</option>
   </select>
 
-  <button onclick="submitMessage()">Submit</button>
+  <h3 class="placeholder">Prompt</h3>
+
+  <h3 class="hewo">Model:</h3>
+
+  <button onclick="submitMessage()"></button>
+  <span class="buttontext">Submit</span>
   <p id="responseMessage"></p>
 
   <script>
+
+    
     async function submitMessage() {
       const userInput = document.getElementById('userInput').value;
       const response = await fetch('https://eddiegpt.vercel.app/submit', {
@@ -67,6 +167,7 @@
       });
       const data = await response.text();
       document.getElementById('responseMessage').innerText = data;
+
     }
   </script>
 </body>
