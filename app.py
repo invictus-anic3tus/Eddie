@@ -15,19 +15,22 @@ prevmessages = [
 
 def ai(message):
 
-    prevmessages.append({"role": "user", "content": message})
-
     client = Client()
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=prevmessages,
-        # Add any other necessary parameters
-    )
-    
-    assistant_response = response.choices[0].message.content
-    prevmessages.append({"role": "assistant", "content": assistant_response})
+    recent_messages = prevmessages[-3:]
+    recent_messages.append({"role": "user", "content": message})
 
-    return assistant_response
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=recent_messages,
+        )
+        assistant_response = response.choices[0].message.content
+        prevmessages.append({"role": "assistant", "content": assistant_response})
+        return assistant_response
+    
+    except Exception as e:
+        print(f"Error in AI response: {e}")
+        return "Sorry, there was an error processing your request."
 
 
 @app.route('/submit', methods=['POST'])
