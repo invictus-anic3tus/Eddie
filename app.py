@@ -24,7 +24,7 @@ def ai(message):
         # Add any other necessary parameters
     )
     
-    assistant_response = response['choices'][0]['message']['content']
+    assistant_response = response.choices[0].message.content
     prevmessages.append({"role": "assistant", "content": assistant_response})
 
     return assistant_response
