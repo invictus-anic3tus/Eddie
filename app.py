@@ -3,7 +3,7 @@ from flask_cors import CORS
 from g4f.client import Client
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/submit": {"origins": r"^https://.*\.vercel\.app$"}})
 
 @app.route('/')
 def serve_html():
@@ -35,6 +35,7 @@ def handle_submit():
     data = request.get_json()
     user_message = data.get('message', '')
     response_message = ai(user_message)
+
     return jsonify({"response": response_message})
 
 if __name__ == '__main__':

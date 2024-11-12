@@ -160,12 +160,27 @@
 
   <script>
 
+
+    document.getElementById("model").onchange = changeListener;
+
+    function changeListener() {
+      var value = this.value
+      console.log(value);
+
+      if (value == "eddie2") {
+        document.body.style.background = "red";
+      } else if (value == "custom") {
+        document.body.style.background = "blue";
+      }
+
+    }
+
     
     async function submitMessage() {
 
       const userInput = document.getElementById('userInput').value;
 
-      const response = await fetch('https://eddiegpt.vercel.app/submit', {
+      const response = await fetch('/submit', {
         
         method: 'POST',
         headers: {
@@ -176,7 +191,7 @@
       });
 
       const data = await response.json();
-      document.getElementById('responseMessage').innerText = data;
+      document.getElementById('responseMessage').innerText = data.response;
 
     }
   </script>
