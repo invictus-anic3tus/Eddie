@@ -306,14 +306,15 @@
 
     async function changePersonality() {
       try {
-        const text = document.getElementById('customprompt').value;
+        const message = document.getElementById('customprompt').value;
+        console.log(message);
 
-        const response = await fetch('https://eddiegpt.vercel.app/customize', {
+        const response = await fetch('/customize', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ text: text })
+          body: JSON.stringify({ text: message })
         });
 
         if (!response.ok) {
