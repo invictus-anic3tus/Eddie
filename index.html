@@ -308,7 +308,7 @@
       try {
         const text = document.getElementById('customprompt').value;
 
-        const response = await fetch('http://localhost:3000/customize', {
+        const response = await fetch('http://eddiegpt.vercel.app/customize', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
