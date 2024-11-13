@@ -41,6 +41,19 @@ def handle_submit():
 
     return jsonify({"response": response_message})
 
+
+
+@app.route('/customize', methods=['POST'])
+def custom_prompt():
+    data = request.get_json()
+    text = data.get('text', '')
+
+    response_text = f"Recieved text: {text}"
+
+    return jsonify({"response": response_text})
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
