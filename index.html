@@ -306,14 +306,14 @@
 
     async function changePersonality() {
       try {
-        const newPersonality = document.getElementById('customprompt').value;
+        const text = document.getElementById('customprompt').value;
 
         const response = await fetch('/customize', {
           method: 'POST',
           headers: {
             'Content-Type': 'application.json'
           },
-          body: JSON.stringify({ text: newPersonality })
+          body: JSON.stringify({ text: text })
         });
 
         const data = await response.json();

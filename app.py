@@ -46,10 +46,12 @@ def handle_submit():
 @app.route('/customize', methods=['POST'])
 def custom_prompt():
     data = request.get_json()
-    text = data.get('text', '')
+    text = data.get('text', '') if data else ''
 
-    response_text = f"Recieved text: {text}"
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
 
+    response_text = f"Received text: {text}"
     return jsonify({"response": response_text})
 
 
