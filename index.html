@@ -243,7 +243,7 @@
   <button onclick="submitMessage()"></button>
   <span class="buttontext">Submit</span>
   
-  <p id="responseMessage">Blahaj</p>
+  <p id="responseMessage"></p>
 
   <div class="square"></div>
 
@@ -285,9 +285,9 @@
         const response = await fetch('/submit', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ message: userInput }),
+          body: JSON.stringify({ message: userInput })
         });
 
         if (!response.ok) {
@@ -311,9 +311,9 @@
         const response = await fetch('/customize', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application.json',
+            'Content-Type': 'application.json'
           },
-          body: JSON.stringify({ text: newPersonality})
+          body: JSON.stringify({ text: newPersonality })
         });
 
         const data = await response.json();
