@@ -46,6 +46,8 @@ def handle_submit():
 @app.route('/customize', methods=['POST'])
 def custom_prompt():
     data = request.get_json()
+    print("Received data:", data)  # Debugging print statement
+
     text = data.get('text', '') if data else ''
 
     if not text:

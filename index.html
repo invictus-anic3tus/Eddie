@@ -316,6 +316,12 @@
           body: JSON.stringify({ text: text })
         });
 
+        if (!response.ok) {
+            const errorText = await response.text(); // Reads the error as text
+            console.error("Server error:", errorText);
+            throw new Error("Server responded with an error");
+        }
+
         const data = await response.json();
         console.log("Python Response:", data.response);
       } catch (error) {
