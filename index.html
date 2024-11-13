@@ -29,10 +29,10 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     font-family: Arial, Helvetica, sans-serif;
-    position: absolute;
+    position: relative;
 
-    top: 230px;
-    left: 110px;
+    top: 110px;
+    left: 100px;
   }
 
   option {
@@ -68,9 +68,10 @@
   }
 
   .placeholder {
-    position: absolute;
-    top: 85px;
+    position: relative;
+    top: -70px;
     left: 40px;
+    width: 70px;
     background-color: white;
     border: 2px solid;
     border-radius: 5px;
@@ -83,7 +84,7 @@
 
   button {
     position: relative;
-    top: 71px;
+    top: -35px;
     left: 230px;
     height: 37px;
     width: 107px;
@@ -128,13 +129,13 @@
     position: relative;
     font-weight: bold;
     left: 255px;
-    top: 45px;
+    top: -61px;
     pointer-events: none;
   }
 
-  p {
+  #responseMessage {
     position: relative;
-    top: 100px;
+    top: -20px;
   }
 </style>
 
@@ -156,7 +157,7 @@
 
   <button onclick="submitMessage()"></button>
   <span class="buttontext">Submit</span>
-  <p id="responseMessage"></p>
+  <p id="responseMessage">aslfsafljaslk;fja</p>
 
   <script>
 
@@ -175,25 +176,33 @@
 
     }
 
-    
+
     async function submitMessage() {
+      try {
+        const userInput = document.getElementById('userInput').value;
 
-      const userInput = document.getElementById('userInput').value;
+        const response = await fetch('/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userInput }),
+        });
 
-      const response = await fetch('/submit', {
-        
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        if (!response.ok) {
+          const errorText = await response.text(); // Reads the error as text
+          console.error("Error response:", errorText);
+          throw new Error("Server responded with an error");
+        }
 
-        body: JSON.stringify({ message: userInput }),
-      });
-
-      const data = await response.json();
-      document.getElementById('responseMessage').innerText = data.response;
-
+        const data = await response.json();
+        document.getElementById('responseMessage').innerText = data.response;
+      } catch (error) {
+        console.error("Error:", error);
+        document.getElementById('responseMessage').innerText = "An error occurred, please try again.";
+      }
     }
+
   </script>
 </body>
 
