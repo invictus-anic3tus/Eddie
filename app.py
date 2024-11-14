@@ -47,9 +47,9 @@ def handle_submit():
 def custom_prompt():
     data = request.get_json()
 
-    text = data[text]
+    user_message = data.get('message', '')
 
-    print("Recieved Text:", text)
+    print("Recieved Text:", user_message)
     return jsonify({"response": 'Recieved'})
 
 
