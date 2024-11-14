@@ -21,7 +21,8 @@
       "dest": "/index.html"
     },
     {
-      "src": "/customize",
+      "src": "^/customize$",
+      "methods": ["POST"],
       "dest": "app.py"
     }
   ]
