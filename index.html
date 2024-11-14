@@ -306,15 +306,15 @@
 
     async function changePersonality() {
       try {
-        const message = document.getElementById('customprompt').value;
-        console.log(message);
+        const userInput = document.getElementById('customprompt').value;
+        // console.log(message);
 
         const response = await fetch('/customize', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ text: message })
+          body: JSON.stringify({ message: userInput })
         });
 
         if (!response.ok) {
@@ -324,7 +324,7 @@
         }
 
         const data = await response.json();
-        console.log("Python Response:", data.response);
+        // console.log("Python Response:", data.response);
       } catch (error) {
         console.error("Error sending custom prompt to Python:", error);
       }
