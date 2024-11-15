@@ -240,7 +240,7 @@
 
   <h3 class="hewo">Model:</h3>
 
-  <button onclick="generateText()"></button>
+  <button onclick="submitMessage()"></button>
   <span class="buttontext">Submit</span>
   
   <p id="responseMessage"></p>
@@ -333,32 +333,6 @@
 
     function clearInput() {
       document.getElementById('customprompt').value = "";
-    }
-
-
-
-
-    async function generateText() {
-        const prompt = document.getElementById('userInput').value;
-        const responseElement = document.getElementById('responseMessage');
-            
-         try {
-            const response = await fetch('/api/generate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt })
-            });
-            
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            
-            const data = await response.json();
-            responseElement.innerText = data.text || 'No response generated';
-        } catch (error) {
-            console.error('Error:', error);
-            responseElement.innerText = 'Error generating response';
-        }
     }
 
   </script>
