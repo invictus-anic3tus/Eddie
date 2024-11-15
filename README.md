@@ -12,3 +12,7 @@ In this site, you can customize AI chatbots! However, so far I haven't done the 
 <br/>
 
 So far, there isn't any customization feature. Coming soon!
+
+<br/>
+
+P.S: If you get any error messages, just reload the page!
