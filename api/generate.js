@@ -10,6 +10,8 @@ export default async function handler(req, res) {
     const MODEL_NAME = 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5';
     const prompt = req.body.prompt;
 
+    console.log('Received prompt:', prompt);  // Add logging to track the prompt
+
     try {
         const response = await fetch(`https://api-inference.huggingface.co/models/${MODEL_NAME}`, {
             method: 'POST',
